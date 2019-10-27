@@ -12,8 +12,8 @@ describe('Functions - introduction', () => {
     //     }
 
     //     // Anonymous function
-    //     let myAdd = function(x: number, y: number = 1): number { 
-    //         return x + y + z; 
+    //     let myAdd = function(x: number, y: number = 1): number {
+    //         return x + y + z;
     //     };
 
     //     // Arrow function
@@ -24,8 +24,8 @@ describe('Functions - introduction', () => {
     //     expect(add(1, 2)).to.equal(/*exercise*/);
     //     expect(myAdd(1, 2)).to.equal(/*exercise*/);
     //     expect(myArrowAdd(1, 2)).to.equal(/*exercise*/);
-    //     //expect(add(1)).to.equal(/*exercise*/); 
-    //     //expect(add(1)).to.equal(/*exercise*/); 
+    //     //expect(add(1)).to.equal(/*exercise*/);
+    //     //expect(add(1)).to.equal(/*exercise*/);
     // });
 
     // it('Void function', () => {
@@ -49,17 +49,17 @@ describe('Functions - introduction', () => {
     //     function buildName(firstName: string, ...restOfName: string[]) {
     //         return firstName + " " + restOfName.join(" ");
     //     }
-        
+
     //     let employeeName = buildName(/*exercise*/);
 
     //     expect(employeeName).to.equal("Joseph Samuel Lucas MacKinzie");
     // });
 
-    // it('Writing the function type', () => {
-    //     let sum: (x: number, y: number) => number;
-            
-    //     /*exercise - write sum function*/
+    it('Writing the function type', () => {
+        let sum: (x: number, y: number) => number;
 
-    //     expect(sum(1, 2)).to.equal(3);
-    // });
+        sum = (a: number, b: number): number => a + b
+
+        expect(sum(1, 2)).to.equal(3);
+    });
 });

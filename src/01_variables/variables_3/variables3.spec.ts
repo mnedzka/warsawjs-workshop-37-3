@@ -28,7 +28,7 @@ describe('Variables var, let, const', () => {
     // it('const - simple value', () => {
     //      const numLivesForCat = 9;
     //     //numLivesForCat++;
-    
+
     //      expect(numLivesForCat).to.equal(/*exercise*/);
     // });
 
@@ -44,46 +44,46 @@ describe('Variables var, let, const', () => {
     //     // exercise - change name and numLives for kitty
     // });
 
-    // it('var-scoping', () => {
-    //     function f(shouldInitialize: boolean) {
-    //         if (shouldInitialize) {
-    //             var x = 10;
-    //         }
-        
-    //         return x;
-    //     }
+    it('var-scoping', () => {
+        function f(shouldInitialize: boolean) {
+            if (shouldInitialize) {
+                var x = 10;
+            }
 
-    //     expect(f(true)).to.equal(/*exercise*/);
-    //     expect(f(false)).to.equal(/*exercise*/);
-    // });
+            return x;
+        }
 
-    // it('var-scoping iteration', () => {
-    //     function f() {
-    //         for(var i = 0; i < 10; i++) {
-    //             for(var i = 0; i < 10; i++) {
-    //             }
+        expect(f(true)).to.equal(10);
+        expect(f(false)).to.equal(undefined);
+    });
 
-    //             if(i == 2) return i;
-    //         }
-    //     }
+    it('var-scoping iteration', () => {
+        function f() {
+            for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 10; i++) {
+                }
 
-    //     expect(f()).to.equal(/*exercise*/);
-    // });
+                if (i == 2) return i;
+            }
+        }
 
-    // it('let-scoping iteration', () => {
-    //     function f() {
-    //         for(let i = 0; i < 10; i++) {
+        expect(f()).to.equal(undefined);
+    });
 
-    //             for(let i = 0; i < 10; i++) {
+    it('let-scoping iteration', () => {
+        function f() {
+            for (let i = 0; i < 10; i++) {
 
-    //             }
+                for (let i = 0; i < 10; i++) {
 
-    //             if(i == 2) return i;
-    //         }
-    //     }
+                }
 
-    //     expect(f()).to.equal(/*exercise*/);
-    // });
+                if (i == 2) return i;
+            }
+        }
+
+        expect(f()).to.equal(2);
+    });
 
     // it('var capturing quirk', (done) => {
     //     var result: number[] = [];

@@ -2,117 +2,138 @@ import { expect } from 'chai';
 
 describe('Interfaces - introduction', () => {
 
-    // it('Required object parameter', () => {
+    it('Required object parameter', () => {
 
-    //     function getLabel(labelledObj: { label: string }) {
-    //         return labelledObj.label;
-    //     }
-        
-    // /*Exercise - create myObj that will pass test*/
+        function getLabel(labelledObj: { label: string }) {
+            return labelledObj.label;
+        }
 
-    //     expect(getLabel(myObj)).to.equal('test');
-    // });
+        /*Exercise - create myObj that will pass test*/
 
-    // it('Required object parameter with interface', () => {
+        const myObj = { label: 'test' }
 
-    //     /*Exercise - create IMyObject interface that will have same result as above*/
+        expect(getLabel(myObj)).to.equal('test');
+    });
 
-    //     function getLabel(labelledObj: IMyObject) {
-    //         return labelledObj.label;
-    //     }
-        
-    //     let myObj = {size: 10, label: "test"};
+    it('Required object parameter with interface', () => {
 
-    //     expect(getLabel(myObj)).to.equal('test');
-    // });
+        /*Exercise - create IMyObject interface that will have same result as above*/
 
-    // it('Required object parameter with interface - with function', () => {
+        interface IMyObject {
+            label: string,
+            size: number
+        }
 
-    //     /*Exercise - implement missing things here*/
-    //     interface IMyObject {
-    //         label: string
-    //     }
+        function getLabel(labelledObj: IMyObject) {
+            return labelledObj.label;
+        }
 
-    //     function getLabel(labelledObj: IMyObject) {
-    //         return labelledObj.doubleText(labelledObj.label);
-    //     }
-        
-    //     let myObj: IMyObject = {label: "test", doubleText: (text: string) => text + text};
+        let myObj = { size: 10, label: "test" };
 
-    //     expect(getLabel(myObj)).to.equal('testtest');
-    // });
+        expect(getLabel(myObj)).to.equal('test');
+    });
 
-    // it('Required object parameter with interface - optional parameter', () => {
+    it('Required object parameter with interface - with function', () => {
 
-    //     interface IMyObject {
-    //         /*Exercise - implement missing things here*/
-    //     }
+        /*Exercise - implement missing things here*/
+        interface IMyObject {
+            label: string;
+            doubleText: (text: string) => string
+        }
 
-    //     function getLabel(labelledObj: IMyObject) {
-    //         return labelledObj.label + (labelledObj.size ? labelledObj.size : '');
-    //     }
-        
-    //     let myObj: IMyObject = {size: 10, label: "test"};
-    //     let myObj2: IMyObject = {label: "test"};
+        function getLabel(labelledObj: IMyObject) {
+            return labelledObj.doubleText(labelledObj.label);
+        }
 
-    //     expect(getLabel(myObj)).to.equal('test10');
-    //     expect(getLabel(myObj2)).to.equal('test');
-    // });
+        let myObj: IMyObject = { label: "test", doubleText: (text: string) => text + text };
 
-    // it('Required object parameter with interface - with extenstion', () => {
+        expect(getLabel(myObj)).to.equal('testtest');
+    });
 
-    //     interface IMyObject {
-    //         label: string,
-    //     }
+    it('Required object parameter with interface - optional parameter', () => {
 
-    //     /*Exercise - implement missing interface here*/
+        interface IMyObject {
+            /*Exercise - implement missing things here*/
+            label: string;
+            size?: number;
+        }
 
-    //     function getLabel(labelledObj: IMyObjectWithSize) {
-    //         return labelledObj.label + (labelledObj.size ? labelledObj.size : '');
-    //     }
-        
-    //     let myObj: IMyObjectWithSize = {size: 10, label: "test"};
-    //     let myObj2: IMyObject = {label: "test"};
+        function getLabel(labelledObj: IMyObject) {
+            return labelledObj.label + (labelledObj.size ? labelledObj.size : '');
+        }
 
-    //     expect(getLabel(myObj)).to.equal('test10');
-    //     expect(getLabel(myObj2)).to.equal('test');
-    // });
+        let myObj: IMyObject = { size: 10, label: "test" };
+        let myObj2: IMyObject = { label: "test" };
 
-    // it('Required object parameter with interface - index signatures', () => {
+        expect(getLabel(myObj)).to.equal('test10');
+        expect(getLabel(myObj2)).to.equal('test');
+    });
 
-    //     interface IMyObject {
-    //         label: string,
-    //         /*Exercise - index signature that accept only string properties*/
-    //     }
+    it('Required object parameter with interface - with extenstion', () => {
 
-    //     function getLabel(labelledObj: IMyObject) {
-    //         return labelledObj.prefix + labelledObj.label;
-    //     }
-        
-    //     let myObj: IMyObject = {prefix: "pre-", label: "test"};
+        interface IMyObject {
+            label: string,
+        }
 
-    //     expect(getLabel(myObj)).to.equal('pre-test');
-    // });
+        /*Exercise - implement missing interface here*/
 
-    // it('Required object parameter with interface - exercise with index signatures', () => {
+        interface IMyObjectWithSize {
+            label: string;
+            size?: number;
+        }
 
-    //     interface IMyFn {
-    //         joinText: /*Exercise - Missing type*/
-    //     }
+        function getLabel(labelledObj: IMyObjectWithSize) {
+            return labelledObj.label + (labelledObj.size ? labelledObj.size : '');
+        }
 
-    //     let joinAllproperties: IMyFn = {
-    //         joinText: function(...parms: /*Exercise - Missing type*/) {
-    //             let result = "";
-                
-    //             for(let element of parms) {
-    //                 for(let property in element) {
-    //                     result = result + element[property];
-    //                 }
-    //             }
-    //             return result
-    //         }
-    //     };
+        let myObj: IMyObjectWithSize = { size: 10, label: "test" };
+        let myObj2: IMyObject = { label: "test" };
 
-    //     expect(joinAllproperties.joinText({type: 'test', value: "1"}, {type: 'test', value: "2"})).to.equal("test1test2");
-    // });
+        expect(getLabel(myObj)).to.equal('test10');
+        expect(getLabel(myObj2)).to.equal('test');
+    });
+
+    it('Required object parameter with interface - index signatures', () => {
+
+        interface IMyObject {
+            label: string,
+            /*Exercise - index signature that accept only string properties*/
+            [prefix: string]: string;
+        }
+
+        function getLabel(labelledObj: IMyObject) {
+            return labelledObj.prefix + labelledObj.label;
+        }
+
+        let myObj: IMyObject = { prefix: "pre-", label: "test" };
+
+        expect(getLabel(myObj)).to.equal('pre-test');
+    });
+
+    it('Required object parameter with interface - exercise with index signatures', () => {
+
+        interface IMyFn {
+            joinText: (...param: onlyStringKeys[]) => string;
+
+        }
+
+        interface onlyStringKeys {
+            [key: string]: string;
+        }
+
+        let joinAllproperties: IMyFn = {
+            joinText: function (...parms: onlyStringKeys[]) {
+                let result = "";
+
+                for (let element of parms) {
+                    for (let property in element) {
+                        result = result + element[property];
+                    }
+                }
+                return result
+            }
+        };
+
+        expect(joinAllproperties.joinText({ type: 'test', value: "1" }, { type: 'test', value: "2" })).to.equal("test1test2");
+    });
 });

@@ -12,8 +12,8 @@ class Greeter {
 }
 
 class NewGreeter {
-    private greeting: string; 
-    constructor(message?: string) {   
+    private greeting: string;
+    constructor(message?: string) {
         this.greeting = message;
     }
 
@@ -28,25 +28,25 @@ class NewGreeter {
 
 
 describe('Class - constructor and function', () => {
-    // it('Should return greeting message', () => {
-    //     var greeter = new Greeter('friend');
+    it('Should return greeting message', () => {
+        var greeter = new Greeter('friend');
 
-    //     expect(greeter.greet()).to.equal(/*Exercise*/);
-    // });
+        expect(greeter.greet()).to.equal('Hello, friend');
+    });
 
-    // it('Optional constructor parameter', () => {
-    //     var greeter = new NewGreeter('');
-    //     var greeter2 = new NewGreeter('friend')
+    it('Optional constructor parameter', () => {
+        var greeter = new NewGreeter('');
+        var greeter2 = new NewGreeter('friend')
 
-    //     expect(greeter.greet()).to.equal(/*Exercise*/);
-    //     expect(greeter2.greet()).to.equal(/*Exercise*/);
-    // });
+        expect(greeter.greet()).to.equal('Hello, ');
+        expect(greeter2.greet()).to.equal('Hello, friend');
+    });
 
-    // it('Private properties hacking', () => {
-    //     var greeter = new NewGreeter('Test');
+    it('Private properties hacking', () => {
+        var greeter = new NewGreeter('Test');
 
-    //     expect(/*Exercise*/).to.equal('Test');
-    //     expect(/*Exercise*/).to.equal('Secret Greet');
-    // });
+        expect(greeter['greeting']).to.equal('Test');
+        expect(eval('greeter.secretGreet()')).to.equal('Secret Greet');
+    });
 
 });

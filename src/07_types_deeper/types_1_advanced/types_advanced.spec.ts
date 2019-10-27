@@ -4,8 +4,9 @@ describe('Types - introduction', () => {
 
     // it('Intersection types', () => {
 
-    //     function extend<T, U>(first: T, second: U): /*Exercise - fill type*/ {
+    //     function extend<T, U>(first: T, second: U): T & U /*Exercise - fill type*/ {
     //         /*Exercise fill body*/
+    //         return <T, U>{}
     //     }
 
     //     class Person {
@@ -19,7 +20,7 @@ describe('Types - introduction', () => {
     //     expect(extend(new Person(), new User()).name).to.equal('PersonName');
     //     expect(extend(new Person(), new User()).login).to.equal('UserLogin');
     // });
-    
+
     // interface Document {
     //   createElement(tagName: "div"): HTMLDivElement; // specialized
     //   createElement(tagName: "span"): HTMLSpanElement; // specialized
@@ -85,7 +86,7 @@ describe('Types - introduction', () => {
     //     expect(sn).to.equal(/*Exercise*/);
     // });
 
-    
+
     // it('Nullable return type', () => {
     //     /* Exercise - create valueOfDefault function */
 
@@ -96,18 +97,18 @@ describe('Types - introduction', () => {
 
     // //--------------------------------------------------Exercise 1------------------------------------------------------
 
-    // it('Type Aliases', () => {
-    //     type Tree<T> = /*Exercise - implement Tree type which will contain parent property and other properties from T*/
+    it('Type Aliases', () => {
+        type Tree<T> = T & { parent: Tree<T> } /*Exercise - implement Tree type which will contain parent property and other properties from T*/
 
-    //     class Node {
-    //         name: string;
-    //     }
+        class Node {
+            name: string;
+        }
 
-    //     var node: Tree<Node> = {name: "Test", parent: {name: "ParentTest", parent: null}};
+        var node: Tree<Node> = { name: "Test", parent: { name: "ParentTest", parent: null } };
 
-    //     expect(node.name).to.equal("Test");
-    //     expect(node.parent.name).to.equal("ParentTest");
-    // })
+        expect(node.name).to.equal("Test");
+        expect(node.parent.name).to.equal("ParentTest");
+    })
 
     // it('Literal type', () => {
     //     type Choise = /*Exercise - implement chose type which will allow only A,B,C,D*/
@@ -135,8 +136,8 @@ describe('Types - introduction', () => {
     //     class ScientificCalculator extends BasicCalculator {
     //         /*Exercise - implement ScientificCalculator*/
     //     }
-        
-        
+
+
     //     let value = new ScientificCalculator(2)
     //                 .add(1)
     //                 .sin()
@@ -149,13 +150,13 @@ describe('Types - introduction', () => {
     // it('Index types', () => {
 
     //     /* Exercise - Implement pluck funciton, which takes an array of property names and object, and returns an array containing the property value of object.
-        
+
     //     For example:
     //     pluck(person, ['name', 'age']) // -> ['Jarid', 35]
 
     //     Important - disallow type unexisting property for object for example pluck(person, ['name', '123dfsa']). Declare return type
     //     */
-        
+
     //     interface Person {
     //         name: string;
     //         age: number;
@@ -166,7 +167,7 @@ describe('Types - introduction', () => {
     //     };
 
     //     let result1: string[] = pluck(person, ['name']); // change name to name2 should throw error
-    //     let result2: (string | number)[] = pluck(person, ['name', 'age']); 
+    //     let result2: (string | number)[] = pluck(person, ['name', 'age']);
 
     //     expect(result1[0]).to.equal('Jarid');
     //     expect(result2[0]).to.equal('Jarid');
@@ -202,7 +203,7 @@ describe('Types - introduction', () => {
     //         updatePart(newName: string): void;
     //         anotherMethod(newName: string): void;
     //     }
-        
+
     //     let allNames: Key<Part>;
     //     allNames = "name" // here should allow only id, name, subparts, updatePart or anotherMethod
 
@@ -218,7 +219,7 @@ describe('Types - introduction', () => {
     //         updatePart(newName: string): void;
     //         anotherMethod(newName: string): void;
     //     }
-        
+
     //     let functionNames: FunctionPropertyNames<Part>;
     //     functionNames = "updatePart";
 
