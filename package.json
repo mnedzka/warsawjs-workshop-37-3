@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "scripts": {
     "clear:all": "rm -rf node_modules/ npm-debug.log",
-    "pretest": "cls",
+    "pretest": "clear",
     "test": "npm run mocha --recursive src/**/*.spec.ts",
     "mocha": "mocha -r ts-node/register --timeout 4000",
     "prettier:base": "prettier --parser typescript --single-quote",
